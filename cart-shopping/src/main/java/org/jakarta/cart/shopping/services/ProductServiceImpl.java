@@ -1,11 +1,14 @@
-package org.jakarta.headers.services;
+package org.jakarta.cart.shopping.services;
 
-import org.jakarta.headers.models.Product;
+
+import org.jakarta.cart.shopping.models.Product;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
+
     @Override
     public List<Product> list() {
         return Arrays.asList(
@@ -13,5 +16,10 @@ public class ProductServiceImpl implements ProductService {
                 new Product(2L,"smartphone", "cell", 300),
                 new Product(3L,"smart-tv", "tv", 200)
         );
+    }
+
+    @Override
+    public Optional<Product> findById(Long id) {
+        return list().stream().filter(p -> p.getId().equals(id)).findAny();
     }
 }

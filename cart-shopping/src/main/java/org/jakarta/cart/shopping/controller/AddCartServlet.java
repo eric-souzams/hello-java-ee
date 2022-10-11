@@ -11,17 +11,21 @@ import org.jakarta.cart.shopping.models.CartItem;
 import org.jakarta.cart.shopping.models.Product;
 import org.jakarta.cart.shopping.services.ProductService;
 import org.jakarta.cart.shopping.services.ProductServiceImpl;
+import org.jakarta.cart.shopping.services.ProductServiceJdbcImpl;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Optional;
 
-@WebServlet("/cart")
-public class CartServlet extends HttpServlet {
+@WebServlet("/add-cart")
+public class AddCartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("id"));
-        ProductService productService = new ProductServiceImpl();
+        Connection connection = (Connection) req.getAttribute("conn");
+
+        ProductService productService = new ProductServiceJdbcImpl(connection);
         Optional<Product> product = productService.findById(id);
 
         if (product.isPresent()) {
@@ -39,6 +43,6 @@ public class CartServlet extends HttpServlet {
             cart.addItem(cartItem);
         }
 
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/cart");
     }
 }

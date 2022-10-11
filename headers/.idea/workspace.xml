@@ -5,6 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33988b74-96a1-4674-8fff-9c284128b57d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/controller/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/controller/LogoutServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/controller/ProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/models/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/services/LoginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/services/LoginServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/services/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/java/org/jakarta/cart/shopping/services/ProductServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/webapp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cart-shopping/src/main/webapp/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cookies/src/main/java/org/jakarta/cookies/controller/LoginServlet.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
@@ -19,6 +37,25 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/org/jakarta/headers/models/Product.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/jakarta/headers/services/ProductService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/jakarta/headers/services/ProductServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jakarta/headers/controller/HeadersServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jakarta/headers/controller/ProductServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jakarta/headers/models/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jakarta/headers/services/ProductService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/org/jakarta/headers/services/ProductServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/classes/org/jakarta/headers/controller/HeadersServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/classes/org/jakarta/headers/controller/ProductServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/classes/org/jakarta/headers/models/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/classes/org/jakarta/headers/services/ProductService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/classes/org/jakarta/headers/services/ProductServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/lib/jackson-annotations-2.13.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/lib/jackson-core-2.13.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/WEB-INF/lib/jackson-databind-2.13.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../form/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../form/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
