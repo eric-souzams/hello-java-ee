@@ -1,6 +1,7 @@
 package org.jakarta.cart.shopping.services;
 
 
+import org.jakarta.cart.shopping.models.Category;
 import org.jakarta.cart.shopping.models.Product;
 
 import java.util.Arrays;
@@ -21,5 +22,35 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> findById(Long id) {
         return list().stream().filter(p -> p.getId().equals(id)).findAny();
+    }
+
+    @Override
+    public void save(Product product) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public List<Category> listCategories() {
+        return null;
+    }
+
+    @Override
+    public Optional<Category> findCategoryById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void saveCategory(Category category) {
+
+    }
+
+    @Override
+    public void deleteCategory(Long id) {
+
     }
 }

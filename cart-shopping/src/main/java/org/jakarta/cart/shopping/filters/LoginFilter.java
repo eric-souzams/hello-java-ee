@@ -10,7 +10,7 @@ import org.jakarta.cart.shopping.services.LoginServiceImpl;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebFilter({"/cart", "/add-cart"})
+@WebFilter({"/cart/*", "/add-cart", "/products/form/*", "/products/delete/*"})
 public class LoginFilter implements Filter {
 
     @Override

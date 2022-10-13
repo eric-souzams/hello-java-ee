@@ -14,6 +14,7 @@ Optional<String> username = (Optional<String>) request.getAttribute("username");
   <h1>List Products</h1>
   <% if (username.isPresent()) { %>
     <h3>Hello, <%=username%></h3>
+    <p><a href="<%=request.getContextPath()%>/products/form">Create Product [+]</a></p>
   <%}%>
   <table border="1">
     <tr>
@@ -24,6 +25,8 @@ Optional<String> username = (Optional<String>) request.getAttribute("username");
       <% if (username.isPresent()) { %>
         <th>Price</th>
         <th>Add +</th>
+        <th>Edit</th>
+        <th>Delete</th>
       <%}%>
     </tr>
 
@@ -31,10 +34,12 @@ Optional<String> username = (Optional<String>) request.getAttribute("username");
       <tr>
         <td><%=prod.getId()%></td>
         <td><%=prod.getName()%></td>
-        <td><%=prod.getType()%></td>
+        <td><%=prod.getCategory().getName()%></td>
         <% if (username.isPresent()) { %>
           <td><%=prod.getPrice()%></td>
           <td><a href="<%=request.getContextPath()%>/add-cart?id=<%=prod.getId()%>"> Add to cart </a></td>
+          <td><a href="<%=request.getContextPath()%>/products/form?id=<%=prod.getId()%>"> Edit </a></td>
+          <td><a onclick="return confirm('Have sure?');" href="<%=request.getContextPath()%>/products/delete?id=<%=prod.getId()%>"> Delete </a></td>
         <%}%>
       </tr>
     <%}%>

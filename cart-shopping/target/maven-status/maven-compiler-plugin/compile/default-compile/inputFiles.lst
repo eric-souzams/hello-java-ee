@@ -6,13 +6,16 @@ C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jak
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\services\ProductServiceImpl.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\exceptions\ServiceJdbcException.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\listenner\ApplicationListener.java
+C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\models\Category.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\LogoutServlet.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\repositories\ProductRepositoryJdbcImpl.java
+C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\repositories\CategoryRepositoryJdbcImpl.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\CartServlet.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\utils\DatabaseConnection.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\AddCartServlet.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\repositories\Repository.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\services\ProductService.java
+C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\ProductFormServlet.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\filters\ConnectionFilter.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\models\Cart.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\ProductServlet.java
