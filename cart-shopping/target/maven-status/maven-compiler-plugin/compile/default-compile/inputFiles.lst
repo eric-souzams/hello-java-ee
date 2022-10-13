@@ -11,6 +11,7 @@ C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jak
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\repositories\ProductRepositoryJdbcImpl.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\repositories\CategoryRepositoryJdbcImpl.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\CartServlet.java
+C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\DeleteProductServlet.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\utils\DatabaseConnection.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\controller\AddCartServlet.java
 C:\Users\Eric\Documents\www\java-ee-projects\cart-shopping\src\main\java\org\jakarta\cart\shopping\repositories\Repository.java
