@@ -24,7 +24,7 @@ public class ApplicationListener implements ServletContextListener, ServletReque
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         servletContext.log("Starting request.");
-
+        sre.getServletRequest().setAttribute("title", "Cart Servlet");
     }
 
     @Override

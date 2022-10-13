@@ -46,6 +46,8 @@ public class ProductFormServlet extends HttpServlet {
 
         req.setAttribute("categories", productService.listCategories());
         req.setAttribute("product", product);
+        req.setAttribute("title", "Form Product");
+
         getServletContext().getRequestDispatcher("/form.jsp").forward(req,resp);
     }
 
@@ -111,6 +113,8 @@ public class ProductFormServlet extends HttpServlet {
             req.setAttribute("errors", errors);
             req.setAttribute("categories", productService.listCategories());
             req.setAttribute("product", product);
+            req.setAttribute("title", "Form Product");
+
             getServletContext().getRequestDispatcher("/form.jsp").forward(req,resp);
         }
     }

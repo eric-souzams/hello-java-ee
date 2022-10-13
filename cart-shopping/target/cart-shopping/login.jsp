@@ -1,25 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="layout/header.jsp" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-    <form action="<%=request.getContextPath()%>/login" method="post">
-        <div>
-            <label>Username</label>
-            <input type="text" name="username" id="username">
-        </div>
-        <div>
-            <label>Password</label>
-            <input type="password" name="password" id="password">
-        </div>
+<form action="${pageContext.request.contextPath}/login" method="post">
+    <div class="row mb-2">
+        <label>Username</label>
+        <input class="form-control" type="text" name="username" id="username">
+    </div>
 
-        <div>
-            <input type="submit" value="Submit">
-        </div>
-    </form>
-</body>
-</html>
+    <div class="row mb-2">
+        <label>Password</label>
+        <input class="form-control" type="password" name="password" id="password">
+    </div>
+
+    <div class="row mb-2">
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </div>
+</form>
+
+<jsp:include page="layout/footer.jsp" />

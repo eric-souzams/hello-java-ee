@@ -1,22 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="layout/header.jsp" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cart</title>
-</head>
-<body>
 <h1>Cart</h1>
-
 <c:choose>
     <c:when test="${sessionScope.cart == null || sessionScope.cart.items.isEmpty()}">
-        <p>Cart is empty.</p>
+        <div class="alert alert-warning">Cart is empty.</div>
     </c:when>
 
     <c:otherwise>
-        <table border="1">
+        <table class="table table-hover table-striped">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -43,7 +36,9 @@
     </c:otherwise>
 </c:choose>
 
-<p><a href="${pageContext.request.contextPath}/index.html"><-- Back</a></p>
-<p><a href="${pageContext.request.contextPath}/products">Keep Buying --></a></p>
-</body>
-</html>
+<div class="my-2">
+    <a class="btn btn-success" href="${pageContext.request.contextPath}/index.html"><-- Back</a>
+    <a class="btn btn-secondary" href="${pageContext.request.contextPath}/products">Keep Buying --></a>
+</div>
+
+<jsp:include page="layout/footer.jsp" />
