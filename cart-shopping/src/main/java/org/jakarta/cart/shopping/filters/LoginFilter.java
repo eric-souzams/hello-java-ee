@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jakarta.cart.shopping.services.LoginService;
-import org.jakarta.cart.shopping.services.LoginServiceImpl;
+import org.jakarta.cart.shopping.services.impl.LoginServiceImpl;
 
 import java.io.IOException;
 import java.util.Optional;

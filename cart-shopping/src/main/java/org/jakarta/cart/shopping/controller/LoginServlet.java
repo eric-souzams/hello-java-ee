@@ -3,8 +3,13 @@ package org.jakarta.cart.shopping.controller;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import org.jakarta.cart.shopping.models.User;
+import org.jakarta.cart.shopping.services.UserService;
+import org.jakarta.cart.shopping.services.impl.UserServiceImpl;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -17,13 +22,13 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String USERNAME = "admin";
-        String PASSWORD = "12345";
-
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (username.equals(USERNAME) && password.equals(PASSWORD)) {
+        UserService userService = new UserServiceImpl((Connection) req.getAttribute("conn"));
+        Optional<User> credentials = userService.login(username, password);
+
+        if (credentials.isPresent()) {
             HttpSession session = req.getSession();
             session.setAttribute("username", username);
         }

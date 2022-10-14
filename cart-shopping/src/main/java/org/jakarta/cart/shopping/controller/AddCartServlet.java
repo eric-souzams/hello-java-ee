@@ -10,8 +10,7 @@ import org.jakarta.cart.shopping.models.Cart;
 import org.jakarta.cart.shopping.models.CartItem;
 import org.jakarta.cart.shopping.models.Product;
 import org.jakarta.cart.shopping.services.ProductService;
-import org.jakarta.cart.shopping.services.ProductServiceImpl;
-import org.jakarta.cart.shopping.services.ProductServiceJdbcImpl;
+import org.jakarta.cart.shopping.services.impl.ProductServiceJdbcImpl;
 
 import java.io.IOException;
 import java.sql.Connection;

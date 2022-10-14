@@ -37,7 +37,7 @@
 </c:choose>
 
 <div class="my-2">
-    <a class="btn btn-success" href="${pageContext.request.contextPath}/index.html"><-- Back</a>
+    <a class="btn btn-success" href="${pageContext.request.contextPath}"><-- Back</a>
     <a class="btn btn-secondary" href="${pageContext.request.contextPath}/products">Keep Buying --></a>
 </div>
 

@@ -5,7 +5,9 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jakarta.cart.shopping.exceptions.ServiceJdbcException;
 import org.jakarta.cart.shopping.utils.DatabaseConnection;
+import org.jakarta.cart.shopping.utils.DatabaseConnectionDataSource;
 
+import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,7 +17,7 @@ public class ConnectionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        try (Connection conn = DatabaseConnection.getConnection()) {
+        try (Connection conn = DatabaseConnectionDataSource.getConnection()) {
             if (conn.getAutoCommit()) conn.setAutoCommit(false);
 
             try {
@@ -28,7 +30,7 @@ public class ConnectionFilter implements Filter {
                 e.printStackTrace();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }
     }

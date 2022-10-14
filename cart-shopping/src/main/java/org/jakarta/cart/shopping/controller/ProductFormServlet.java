@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.jakarta.cart.shopping.models.Category;
 import org.jakarta.cart.shopping.models.Product;
 import org.jakarta.cart.shopping.services.ProductService;
-import org.jakarta.cart.shopping.services.ProductServiceJdbcImpl;
+import org.jakarta.cart.shopping.services.impl.ProductServiceJdbcImpl;
 
 import java.io.IOException;
 import java.sql.Connection;

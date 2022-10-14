@@ -4,7 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import org.jakarta.cart.shopping.services.LoginService;
-import org.jakarta.cart.shopping.services.LoginServiceImpl;
+import org.jakarta.cart.shopping.services.impl.LoginServiceImpl;
 
 import java.io.IOException;
 import java.util.Optional;
