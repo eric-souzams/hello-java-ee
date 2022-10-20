@@ -2,6 +2,8 @@ package org.jakarta.hibernate.jpa.model.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "clients")
 public class Client {
@@ -18,6 +20,29 @@ public class Client {
 
     @Column(name = "payment_type")
     private String paymentType;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        System.out.println("Starting pre persist Client");
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        System.out.println("Starting pre update Client");
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreRemove
+    public void preRemove() {
+        System.out.println("Starting pre remove Client");
+    }
 
     public Client() {
     }
@@ -66,6 +91,22 @@ public class Client {
         this.paymentType = paymentType;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Client = {" +
@@ -73,6 +114,8 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", underName='" + underName + '\'' +
                 ", paymentType='" + paymentType + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

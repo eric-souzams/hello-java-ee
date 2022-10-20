@@ -2,6 +2,7 @@ package org.jakarta.hibernate.jpa;
 
 import jakarta.persistence.EntityManager;
 import org.jakarta.hibernate.jpa.config.JpaConfig;
+import org.jakarta.hibernate.jpa.model.entity.Client;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,12 +25,12 @@ public class JpaApplication {
 //        System.out.println(client);
 
 //        try {
-//            entityManager.getTransaction().begin();
-//
-//            Client client = new Client(null, "Maria", "Soares", "Paypal");
-//            entityManager.persist(client);
-//
-//            entityManager.getTransaction().commit();
+            entityManager.getTransaction().begin();
+
+            Client client = new Client(null, "Maria", "Soares", "Paypal");
+            entityManager.persist(client);
+
+            entityManager.getTransaction().commit();
 //        } catch (Exception e) {
 //            entityManager.getTransaction().rollback();
 //            e.printStackTrace();
@@ -38,17 +39,17 @@ public class JpaApplication {
 //        }
 //
 //        EntityManager entityManager2 = JpaConfig.getEntityManager();
-//        List<Client> clients = entityManager2.createQuery("select c from Client c", Client.class).getResultList();
-//        clients.forEach(System.out::println);
+        List<Client> clients = entityManager.createQuery("select c from Client c", Client.class).getResultList();
+        clients.forEach(System.out::println);
 
 //        try {
-//            Client client = entityManager.find(Client.class, 1L);
-//
-//            entityManager.getTransaction().begin();
-//            client.setName("Mano Brasol");
-//            entityManager.persist(client);
-//
-//            entityManager.getTransaction().commit();
+            Client client2 = entityManager.find(Client.class, 6L);
+
+            entityManager.getTransaction().begin();
+            client2.setName("Mano Brasol");
+            entityManager.persist(client2);
+
+            entityManager.getTransaction().commit();
 //        } catch (Exception e) {
 //            entityManager.getTransaction().rollback();
 //            e.printStackTrace();
