@@ -4,6 +4,11 @@
     <persistence-unit name="connJPA" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.jakarta.hibernate.jpa.model.entity.Client</class>
+        <class>org.jakarta.hibernate.jpa.model.entity.ClientDetails</class>
+        <class>org.jakarta.hibernate.jpa.model.entity.Invoice</class>
+        <class>org.jakarta.hibernate.jpa.model.entity.Address</class>
+        <class>org.jakarta.hibernate.jpa.model.entity.Course</class>
+        <class>org.jakarta.hibernate.jpa.model.entity.Student</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/javaee_hibernate"/>
