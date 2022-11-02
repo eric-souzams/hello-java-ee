@@ -1,0 +1,6 @@
+eric\local\org\ear\ejb\repositories\UserRepository.class
+eric\local\org\ear\ejb\repositories\impl\UserRepositoryImpl.class
+eric\local\org\ear\ejb\services\impl\UserServiceImpl.class
+eric\local\org\ear\ejb\producers\ProducerResources.class
+eric\local\org\ear\ejb\services\UserService.class
+eric\local\org\ear\ejb\models\entities\User.class
