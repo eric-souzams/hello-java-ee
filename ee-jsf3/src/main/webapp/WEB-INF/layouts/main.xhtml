@@ -2,53 +2,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+<html lang="#{languageController.locale}">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        locale="#{languageController.locale}">
 
-<h:head>
-    <meta charset="UTF-8"/>
-    <title>#{title}</title>
-    <h:outputStylesheet name="css/bootstrap.min.css" />
-    <ui:insert name="head" />
-</h:head>
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>JSF3</title>
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <ui:insert name="head"/>
+    </h:head>
 
-<h:body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Java JSF3</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <h:link outcome="index" value="Home" class="nav-link active"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link outcome="form" value="New Product" class="nav-link"/>
-                    </li>
-                </ul>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Java JSF3</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <h:link outcome="index" value="#{msg['navbar.text.home']}" class="nav-link active"/>
+                        </li>
+                        <li class="nav-item">
+                            <h:link outcome="form" value="#{msg['navbar.text.create']}" class="nav-link"/>
+                        </li>
+                        <li class="nav-item">
+                            <h:form>
+                                <h:selectOneMenu value="#{languageController.language}"
+                                                 valueChangeListener="#{languageController.select}"
+                                                 class="form-select" onchange="submit()">
+                                    <f:selectItem itemLabel="#{msg['navbar.text.select.language']}" itemValue="en"/>
+                                    <f:selectItems value="#{languageController.languagesAvailable}"/>
+                                </h:selectOneMenu>
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
+
+        <div class="container">
+            <h:messages globalOnly="true" styleClass="alert" errorClass="alert alert-danger"
+                        infoClass="alert alert-success" warClass="alert alert-warning"/>
+            <ui:insert name="content"/>
+
+            <hr/>
+
+            <footer style="clear: both;">
+                <h:graphicImage value="/resources/assets/logo.jpg" alt="Logo"/>
+                <p>Java JSF3 &copy; 2022</p>
+
+                <h:outputScript name="js/bootstrap.bundle.min.js"/>
+
+                <ui:insert name="js"/>
+            </footer>
         </div>
-    </nav>
-
-    <div class="container">
-        <h:messages globalOnly="true" styleClass="alert" errorClass="alert alert-danger"
-                                      infoClass="alert alert-success" warClass="alert alert-warning" />
-        <ui:insert name="content" />
-
-        <hr/>
-
-        <footer style="clear: both;">
-            <h:graphicImage value="/resources/assets/logo.jpg" alt="Logo" />
-            <p>Java JSF3 &copy; 2022</p>
-
-            <h:outputScript name="js/bootstrap.bundle.min.js" />
-
-            <ui:insert name="js" />
-        </footer>
-    </div>
-</h:body>
+    </h:body>
+</f:view>
 </html>

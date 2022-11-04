@@ -12,6 +12,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 @Model
 public class ProductController {
@@ -21,6 +22,9 @@ public class ProductController {
 
     @Inject
     private FacesContext facesContext;
+
+    @Inject
+    private ResourceBundle resourceBundle;
 
     private Product product;
     private Long id;
@@ -57,14 +61,13 @@ public class ProductController {
     }
 
     public String save() {
-        System.out.println(product);
-        productService.save(product);
-
         if (product.getId() != null && product.getId() > 0) {
-            facesContext.addMessage(null, new FacesMessage("Product " + product.getName() + " updated."));
+            facesContext.addMessage(null, new FacesMessage(resourceBundle.getString("product.message.edit")));
         } else  {
-            facesContext.addMessage(null, new FacesMessage("Product " + product.getName() + " created."));
+            facesContext.addMessage(null, new FacesMessage(resourceBundle.getString("product.message.create")));
         }
+
+        productService.save(product);
 
         return "index.xhtml?faces-redirect=true";
     }
@@ -76,7 +79,7 @@ public class ProductController {
 
     public String delete(Long id) {
         productService.delete(id);
-        facesContext.addMessage(null, new FacesMessage("Product deleted."));
+        facesContext.addMessage(null, new FacesMessage(resourceBundle.getString("product.message.delete")));
         return "index.xhtml?faces-redirect=true";
     }
 

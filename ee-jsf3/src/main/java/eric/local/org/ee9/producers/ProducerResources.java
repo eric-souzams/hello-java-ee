@@ -4,6 +4,10 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @ApplicationScoped
 public class ProducerResources {
@@ -15,6 +19,14 @@ public class ProducerResources {
         facesContext.getExternalContext().getFlash().setKeepMessages(true);
 
         return facesContext;
+    }
+
+    @Produces
+    @Named("msg")
+    public ResourceBundle resourceBundleBean() {
+        Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+
+        return ResourceBundle.getBundle("messages", locale);
     }
 
 }
