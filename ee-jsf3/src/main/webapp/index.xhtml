@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/layouts/main.xhtml">
+
+    <ui:define name="content">
+        <h:panelGrid border="1" class="table">
+            <f:facet name="header">
+                <h:outputText value="#{title}"/>
+            </f:facet>
+
+            <h:form id="newForm">
+                <h:commandLink value="[+] New Product" action="form.xhtml" class="btn btn-sm btn-primary my-2"/>
+            </h:form>
+
+            <h:outputText value="Empty list." rendered="#{empty listing}" class="alert alert-warning"/>
+
+            <h:dataTable value="#{listing}" var="prod" rendered="#{not empty listing}"
+                         class="table table-hover table-striped">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.name}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="SKU"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.sku}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Category"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.category.name}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.price}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Date"/>
+                    </f:facet>
+                    <h:outputText value="#{prod.createdAt}">
+                        <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Edit"/>
+                    </f:facet>
+                    <h:form id="editForm">
+                        <h:commandLink value="edit" action="#{productController.edit(prod.id)}"
+                                       class="btn btn-sm btn-success"/>
+                    </h:form>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Edit 2"/>
+                    </f:facet>
+                    <h:form id="editForm2">
+                        <h:link value="edit2" outcome="form" class="btn btn-sm btn-info">
+                            <f:param name="id" value="#{prod.id}"/>
+                        </h:link>
+                    </h:form>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Delete"/>
+                    </f:facet>
+                    <h:form id="deleteForm">
+                        <h:commandLink value="delete" action="#{productController.delete(prod.id)}"
+                                       onclick="return confirm('Sure?')" class="btn btn-sm btn-danger"/>
+                    </h:form>
+                </h:column>
+
+            </h:dataTable>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>
