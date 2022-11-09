@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="#{languageController.locale}">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        locale="#{languageController.locale}">
+
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>JSF3</title>
+        <h:outputStylesheet library="webjars" name="primeflex/3.2.0/primeflex.min.css"/>
+        <ui:insert name="head"/>
+    </h:head>
+
+    <h:body>
+        <p:card>
+            <h:form>
+                <p:menubar>
+                    <p:menuitem value="#{msg['navbar.text.home']}" outcome="index" icon="pi pi-fw pi-home"/>
+                    <p:menuitem value="#{msg['navbar.text.create']}" onclick="PF('dialogForm').show()" icon="pi pi-fw pi-plus"/>
+                    <p:menuitem icon="pi pi-fw pi-flag">
+                        <p:selectOneMenu value="#{languageController.language}"
+                                         valueChangeListener="#{languageController.select}" onchange="submit()">
+                            <f:selectItem itemLabel="#{msg['navbar.text.select.language']}" itemValue="en"/>
+                            <f:selectItems value="#{languageController.languagesAvailable}"/>
+                        </p:selectOneMenu>
+                    </p:menuitem>
+                </p:menubar>
+            </h:form>
+
+            <div class="p-mb-2">
+                <p:messages globalOnly="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                <ui:insert name="content"/>
+            </div>
+
+            <p:divider/>
+
+            <div class="p-mb-2">
+                <footer style="clear: both;">
+                    <h:graphicImage value="/resources/assets/logo.jpg" alt="Logo"/>
+                    <p>Java JSF3 &copy; 2022</p>
+
+                    <ui:insert name="js"/>
+                </footer>
+            </div>
+        </p:card>
+    </h:body>
+</f:view>
+</html>

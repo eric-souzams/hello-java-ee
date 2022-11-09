@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/layouts/main.xhtml">
+
+    <ui:define name="content">
+        <p:card>
+            <f:facet name="title">
+                <h:outputText value="#{title}"/>
+            </f:facet>
+
+            <p:divider/>
+
+            <h:form id="newForm">
+                <p:commandButton value="#{msg['product.button.create']}" action="form.xhtml" class="p-my-2"
+                                 onclick="PF('dialogForm').show()" icon="pi pi-plus-circle" style="float: right;">
+                    <p:resetInput target="productForm" />
+                </p:commandButton>
+            </h:form>
+
+            <h:outputText value="#{msg['product.list.empty']}" rendered="#{empty productController.products}"/>
+
+            <h:form>
+                <div class="p-col">
+                <label for="searchText" class="p-col-fixed" style="margin-right: 30px;">#{msg['product.search.text']}</label>
+
+                <p:inputText id="searchText" value="#{productController.searchText}" placeholder="#{msg['product.search.text']}">
+                    <p:ajax listener="#{productController.search}" event="keyup" update="table1"/>
+                </p:inputText>
+                </div>
+            </h:form>
+
+            <p:dataTable value="#{productController.products}" var="prod" id="table1"
+                         rendered="#{not empty productController.products}" style="max-width: 100%;"
+                         rows="5"
+                         paginator="true" paginatorPosition="both"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+
+                <p:column headerText="#{msg['product.id']}">
+                    <h:outputText value="#{prod.id}"/>
+                </p:column>
+
+                <p:column headerText="#{msg['product.name']}">
+                    <h:outputText value="#{prod.name}"/>
+                </p:column>
+
+                <p:column headerText="#{msg['product.sku']}">
+                    <h:outputText value="#{prod.sku}"/>
+                </p:column>
+
+                <p:column headerText="#{msg['product.category']}">
+                    <h:outputText value="#{prod.category.name}"/>
+                </p:column>
+
+                <p:column headerText="#{msg['product.price']}">
+                    <h:outputText value="#{prod.price}"/>
+                </p:column>
+
+                <p:column headerText="#{msg['product.createdAt']}">
+                    <h:outputText value="#{prod.createdAt}">
+                        <f:convertDateTime type="localDate" pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="#{msg['product.button.edit']}">
+                    <h:form id="editForm1">
+                        <p:commandButton value="#{msg['product.button.edit']}" action="#{productController.edit(prod.id)}"
+                                         class="ui-button-success" onclick="PF('dialogForm').show()" icon="pi pi-save"
+                                         update="productForm">
+                            <p:resetInput target="productForm" />
+                        </p:commandButton>
+                    </h:form>
+                </p:column>
+
+<!--                <p:column headerText="#{msg['product.button.edit']}">-->
+<!--                    <h:form id="editForm2">-->
+<!--                        <p:linkButton outcome="form" value="#{msg['product.button.edit']}">-->
+<!--                            <f:param name="id" value="#{prod.id}"/>-->
+<!--                        </p:linkButton>-->
+<!--                    </h:form>-->
+<!--                </p:column>-->
+
+                <p:column headerText="#{msg['product.button.delete']}">
+                    <h:form id="deleteForm">
+                        <p:commandButton value="#{msg['product.button.delete']}"
+                                         action="#{productController.delete(prod.id)}"
+                                         onclick="return confirm('#{msg['product.button.confirm']}')"
+                                         class="ui-button-danger"
+                                         update="table1"
+                                         icon="pi pi-trash"/>
+                    </h:form>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dialog header="Form Product" widgetVar="dialogForm" minHeight="200" minWidth="500" showEffect="fade" modal="true">
+                <p:ajax event="close" listener="#{productController.closeDialog}" update="productForm" />
+                <ui:include src="form.xhtml" />
+            </p:dialog>
+
+        </p:card>
+    </ui:define>
+</ui:composition>
