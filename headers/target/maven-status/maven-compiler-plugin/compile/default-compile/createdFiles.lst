@@ -1,5 +1,0 @@
-org\jakarta\headers\controller\HeadersServlet.class
-org\jakarta\headers\controller\ProductServlet.class
-org\jakarta\headers\models\Product.class
-org\jakarta\headers\services\ProductServiceImpl.class
-org\jakarta\headers\services\ProductService.class

@@ -1,0 +1,13 @@
+eric\local\org\model\RamoAtividade.class
+eric\local\org\service\CadastroEmpresaService.class
+eric\local\org\model\Empresa.class
+eric\local\org\repository\RamoAtividades.class
+eric\local\org\util\EntityManagerProducer.class
+eric\local\org\repository\Empresas.class
+eric\local\org\controller\GestaoEmpresasController.class
+eric\local\org\enums\TipoEmpresa.class
+eric\local\org\repository\CamadaPersistencia.class
+eric\local\org\util\TransactionalInterceptor.class
+eric\local\org\controller\Teste.class
+eric\local\org\repository\SchemaGeneration.class
+eric\local\org\util\Transactional.class
