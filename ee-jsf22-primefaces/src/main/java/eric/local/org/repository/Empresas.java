@@ -25,9 +25,13 @@ public class Empresas implements Serializable {
     }
 
     public List<Empresa> pesquisar(String nome) {
-        return entityManager.createQuery("select e from Empresa e where e.nomeFantasia like :nomeFantasia", Empresa.class)
-                .setParameter("nomeFantasia", nome + "%")
+        return entityManager.createQuery("select e from Empresa e where e.razaoSocial like :razaoSocial", Empresa.class)
+                .setParameter("razaoSocial", nome + "%")
                 .getResultList();
+    }
+
+    public List<Empresa> todas() {
+        return entityManager.createQuery("from Empresa", Empresa.class).getResultList();
     }
 
     public Empresa guardar(Empresa empresa) {
@@ -38,4 +42,6 @@ public class Empresas implements Serializable {
         Empresa result = porId(empresa.getId());
         entityManager.remove(result);
     }
+
+
 }

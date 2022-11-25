@@ -1,110 +1,163 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <meta charset="UTF-8"/>
-    <title>Gestão Empresas</title>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="WEB-INF/template/Layout.xhtml">
 
-    <h:outputStylesheet library="styles" name="style.css" />
-</h:head>
+    <ui:define name="title">Cadastro de Empresas</ui:define>
 
-<h:body>
-<header>
-    <h:graphicImage library="images" name="logo.png" />
-</header>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewAction action="#{gestaoEmpresasController.buscarEmpresas}"/>
+        </f:metadata>
 
-<div id="content">
-    <h:form>
-        <h:panelGrid columns="2">
-            <h:outputLabel value="Razão Social: " for="razaoSocial" />
-            <h:panelGroup>
-                <h:inputText id="razaoSocial" value="#{gestaoEmpresasController.empresa.razaoSocial}" required="true" label="Razão social"/>
-                <h:message for="razaoSocial" />
-            </h:panelGroup>
+        <h:form id="frm">
+            <p:messages id="messagesHeader" closable="true" />
 
-            <h:outputLabel value="Nome Fantasia: " for="nomeFantasia" />
-            <h:panelGroup>
-                <h:inputText id="nomeFantasia" value="#{gestaoEmpresasController.empresa.nomeFantasia}" required="true" label="Nome fantasia"/>
-                <h:message for="nomeFantasia" />
-            </h:panelGroup>
+            <p:toolbar id="toolbarFormEmpresas">
+                <f:facet name="left">
+                    <p:inputText id="termoPesquisa" placeholder="Digite aqui um termo para pesquisa..." size="30"
+                                 value="#{gestaoEmpresasController.termoPesquisa}" />
 
-            <h:outputLabel value="CNPJ: " for="cnpj" />
-            <h:panelGroup>
-                <h:inputText id="cnpj" value="#{gestaoEmpresasController.empresa.cnpj}" required="true" label="CNPJ">
-                    <f:validateLength minimum="18" maximum="18" />
-                </h:inputText>
-                <h:message for="cnpj" />
-            </h:panelGroup>
+                    <p:commandButton value="Pesquisar" icon="fa fa-search"
+                                     actionListener="#{gestaoEmpresasController.pesquisar}"
+                                     update="empresasDataTable" process="@this termoPesquisa messagesHeader" />
 
-            <h:outputLabel value="Tipo Empresa: " for="tipo" />
-            <h:panelGroup>
-                <h:selectOneMenu id="tipo" value="#{gestaoEmpresasController.empresa.tipo}" required="true" label="Tipo empresa">
-                    <f:selectItem itemLabel="Selecione..." />
-                    <f:selectItems value="#{gestaoEmpresasController.tiposEmpresa}" var="tipoEmpresa"
-                                   itemLabel="#{tipoEmpresa.descricao}" itemValue="#{tipoEmpresa}" />
-                </h:selectOneMenu>
-                <h:message for="tipo" />
-            </h:panelGroup>
+                    <span class="ui-separator">
+                        <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                    </span>
 
-            <h:outputLabel value="Data Fundação: " for="dataFundacao" />
-            <h:panelGroup>
-                <h:inputText id="dataFundacao" value="#{gestaoEmpresasController.empresa.dataFundacao}" label="Data fundação" required="true">
-                    <f:convertDateTime pattern="yyyy-MM-dd" />
-                    <f:passThroughAttribute name="type" value="date" />
-                </h:inputText>
-                <h:message for="dataFundacao" />
-            </h:panelGroup>
+                    <p:commandButton value="Nova" icon="fa fa-plus"
+                                     actionListener="#{gestaoEmpresasController.prepararNovaEmpresa}"
+                                     oncomplete="PF('empresaDialogWidgetVar').show()" update="empresaDialog"
+                                     process="@this">
+                        <p:resetInput target="empresaDialog" />
+                    </p:commandButton>
 
-            <h:outputLabel value="Faturamento: " for="faturamento" />
-            <h:panelGroup>
-                <h:inputText id="faturamento" value="#{gestaoEmpresasController.empresa.faturamento}" label="Faturamento"  required="true">
-                    <f:validateDoubleRange minimum="0" />
-                    <f:convertNumber pattern="#,##0.00" />
-<!--                    <f:convertNumber minFractionNumber="2" maxFractionNumber="2" />-->
-<!--                    <f:convertNumber type="currency" />-->
-                </h:inputText>
-                <h:message for="faturamento" />
-            </h:panelGroup>
+                    <span class="ui-separator">
+                        <span class="ui-icon ui-icon-grip-dotted-vertical"/>
+                    </span>
 
-            <h:outputLabel />
-            <h:commandButton value="Salvar" actionListener="#{gestaoEmpresasController.salvar}" />
+                    <p:commandButton value="Editar" icon="fa fa-edit"
+                                     disabled="#{not gestaoEmpresasController.empresaSelecionada}"
+                                     actionListener="#{gestaoEmpresasController.prepararEdicaoEmpresa}"
+                                     oncomplete="PF('empresaDialogWidgetVar').show()" update="empresaDialog"
+                                     process="@this">
+                        <p:resetInput target="empresaDialog" />
+                    </p:commandButton>
 
-            <h:outputLabel />
-            <h:commandLink value="Ajuda?" action="#{gestaoEmpresasController.ajuda}" />
-        </h:panelGrid>
-    </h:form>
+                    <p:commandButton value="Excluir" icon="fa fa-trash"
+                                     disabled="#{not gestaoEmpresasController.empresaSelecionada}"
+                                     actionListener="#{gestaoEmpresasController.excluirEmpresa}"
+                                     update="messagesHeader empresasDataTable toolbarFormEmpresas" process="@this">
+                        <p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+                                   message="Deseja excluir a empresa?" />
+                    </p:commandButton>
 
-    <h:dataTable value="#{[0,0,0,0]}">
-        <h:column>
-            <f:facet name="header">
-                <h:outputText value="Razão Social" />
-            </f:facet>
+                    <span class="ui-separator">
+                        <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                    </span>
 
-            <h:outputText value="Test de Software MEI" />
-        </h:column>
+                    <p:commandButton value="Exportar para Excel" icon="fa fa-file-excel-o" ajax="false">
+                        <p:dataExporter type="xls" target="empresasDataTable" fileName="empresas" />
+                    </p:commandButton>
+                </f:facet>
+            </p:toolbar>
 
-        <h:column>
-            <f:facet name="header">
-                <h:outputText value="Nome Fantasia" />
-            </f:facet>
+            <p:spacer height="20px"/>
 
-            <h:outputText value="Test EI" />
-        </h:column>
+            <p:dataTable value="#{gestaoEmpresasController.empresas}" var="empresa" id="empresasDataTable"
+                         emptyMessage="Nenhuma informação a ser exibida." paginator="true" rows="10"
+                         paginatorPosition="bottom" selectionMode="single"
+                         selection="#{gestaoEmpresasController.empresa}" rowKey="#{empresa.id}">
 
-        <h:column>
-            <f:facet name="header">
-                <h:outputText value="Tipo Empresa" />
-            </f:facet>
+                <p:ajax event="rowSelect" update="frm:toolbarFormEmpresas" />
+                <p:ajax event="rowUnselect" update="frm:toolbarFormEmpresas" />
 
-            <h:outputText value="MEI" />
-        </h:column>
-    </h:dataTable>
-</div>
+                <p:column headerText="Razão Social" sortBy="#{empresa.razaoSocial}">
+                    <h:outputText value="#{empresa.razaoSocial}"/>
+                </p:column>
 
-<footer>
-    JSF 2.2 e PrimeFaces 6.0 - 2022
-</footer>
-</h:body>
+                <p:column headerText="Nome Fantasia" sortBy="#{empresa.nomeFantasia}">
+                    <h:outputText value="#{empresa.nomeFantasia}"/>
+                </p:column>
 
-</html>
+                <p:column headerText="Tipo Empresa" sortBy="#{empresa.tipo.descricao}">
+                    <h:outputText value="#{empresa.tipo.descricao}"/>
+                </p:column>
+
+                <p:column headerText="Ramo Atividade" sortBy="#{empresa.ramoAtividade}">
+                    <h:outputText value="#{empresa.ramoAtividade.descricao}"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog header="Nova Empresa" widgetVar="empresaDialogWidgetVar" modal="true" resizable="false"
+                      closeOnEscape="true" id="empresaDialog">
+<!--                <p:messages id="empresaMessages" />-->
+
+                <p:defaultCommand target="salvarCommandButton" scope="empresaDialog" />
+
+                <h:panelGrid columns="2" id="empresasPanelGrid" rendered="#{gestaoEmpresasController.empresa ne null}">
+                    <p:outputLabel value="Razão social: " for="razaoSocial"/>
+                    <h:panelGroup>
+                        <p:inputText id="razaoSocial" value="#{gestaoEmpresasController.empresa.razaoSocial}"
+                                     size="80" maxlength="120"/>
+                        <p:message for="razaoSocial"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="Nome fantasia: " for="nomeFantasia"/>
+                    <h:panelGroup>
+                        <p:inputText id="nomeFantasia" value="#{gestaoEmpresasController.empresa.nomeFantasia}"
+                                     size="80" maxlength="80"/>
+                        <p:message for="nomeFantasia"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="Tipo empresa: " for="tipo"/>
+                    <h:panelGroup>
+                        <p:selectOneMenu id="tipo" value="#{gestaoEmpresasController.empresa.tipo}">
+                            <f:selectItem itemLabel="Selecione..."/>
+                            <f:selectItems value="#{gestaoEmpresasController.tiposEmpresa}" var="tipoEmpresa"
+                                           itemLabel="#{tipoEmpresa.descricao}" itemValue="#{tipoEmpresa}"/>
+                        </p:selectOneMenu>
+                        <p:message for="tipo"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="CNPJ: " for="cnpj"/>
+                    <h:panelGroup>
+                        <p:inputMask mask="99.999.999/9999-99" id="cnpj" size="18" maxlength="18"
+                                     value="#{gestaoEmpresasController.empresa.cnpj}"/>
+                        <p:message for="cnpj"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="Data fundação: " for="dataFundacao"/>
+                    <h:panelGroup>
+                        <p:calendar id="dataFundacao" pattern="dd/MM/yyyy" size="30"
+                                    value="#{gestaoEmpresasController.empresa.dataFundacao}"/>
+                        <p:message for="dataFundacao"/>
+                    </h:panelGroup>
+
+                    <p:outputLabel value="Ramo atividade: " for="ramoAtividade"/>
+                    <h:panelGroup>
+                        <p:autoComplete id="ramoAtividade" size="80"
+                                        completeMethod="#{gestaoEmpresasController.completarRamoAtividade}"
+                                        converter="#{gestaoEmpresasController.ramoAtividadeConverter}" var="ramoAtividade"
+                                        itemLabel="#{ramoAtividade.descricao}" itemValue="#{ramoAtividade}"
+                                        value="#{gestaoEmpresasController.empresa.ramoAtividade}"/>
+                        <p:message for="ramoAtividade"/>
+                    </h:panelGroup>
+
+                    <h:outputLabel/>
+                    <p:commandButton value="Salvar" actionListener="#{gestaoEmpresasController.salvar}"
+                                     update="empresasPanelGrid" id="salvarCommandButton"
+                                     oncomplete="if(!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
+                                     process="empresaDialog" />
+                </h:panelGrid>
+            </p:dialog>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
